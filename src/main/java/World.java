@@ -30,4 +30,8 @@ public class World {
     public Boolean isCellAlive(Cell cell) {
         return cellsAliveInTheWorld.contains(cell);
     }
+
+    public int numberOfCellNeighbors(Cell cell) {
+        return 1;
+    }
 }
