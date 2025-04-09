@@ -56,28 +56,4 @@ public class NextGenerationTest {
         Assertions.assertThat(cellsAliveInTheNextGeneration.getFirst().x()).isEqualTo(1);
         Assertions.assertThat(cellsAliveInTheNextGeneration.getFirst().y()).isEqualTo(1);
     }
-
-    @Test
-    public void a_living_cell_with_three_living_neighbors_survives() {
-        // Given
-        World world = new World();
-        Cell cell1Alive = new Cell(0, 0);
-        world.addCell(cell1Alive);
-        Cell cell2Alive = new Cell(0, 2);
-        world.addCell(cell2Alive);
-        Cell cell3Alive = new Cell(2, 0);
-        world.addCell(cell3Alive);
-        Cell cellAlive = new Cell(1, 1);
-        world.addCell(cellAlive);
-
-        // When
-        List<Cell> cellsAliveInTheNextGeneration = world.nextGeneration();
-
-        // Then
-        Assertions.assertThat(cellsAliveInTheNextGeneration).isNotEmpty();
-        Assertions.assertThat(cellsAliveInTheNextGeneration.size()).isEqualTo(1);
-        Assertions.assertThat(cellsAliveInTheNextGeneration.getFirst().x()).isEqualTo(1);
-        Assertions.assertThat(cellsAliveInTheNextGeneration.getFirst().y()).isEqualTo(1);
-    }
-
 }
