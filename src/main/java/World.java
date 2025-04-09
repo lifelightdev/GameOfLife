@@ -31,10 +31,7 @@ public class World {
         return cellsAliveInTheWorld.contains(cell);
     }
 
-    public int numberOfCellAliveNeighbors(Cell cell) {
-        if (cellsAliveInTheWorld.contains(cell)) {
-            return cellsAliveInTheWorld.size() - 1;
-        }
+    public int numberOfCellNeighbors(Cell cell) {
         return cellsAliveInTheWorld.size();
     }
 }
