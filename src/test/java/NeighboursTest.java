@@ -5,7 +5,7 @@ public class NeighboursTest {
     @Test
     public void a_cell_is_alive_in_the_world(){
         //Given
-        World world = new World();
+        World world = new World(3);
         Cell cell = new Cell(1, 1);
         world.addCell(cell);
 
@@ -19,7 +19,7 @@ public class NeighboursTest {
     @Test
     public void a_cell_is_not_alive_in_the_world(){
         //Given
-        World world = new World();
+        World world = new World(3);
 
         //When
         Boolean isAlive = world.isCellAlive(new Cell(1, 1));
@@ -31,7 +31,7 @@ public class NeighboursTest {
     @Test
     public void the_cell_has_a_living_neighbor(){
         //Given
-        World world = new World();
+        World world = new World(3);
         Cell cellAlive = new Cell(0, 0);
         world.addCell(cellAlive);
 
@@ -45,7 +45,7 @@ public class NeighboursTest {
     @Test
     public void the_cell_has_two_living_neighbors(){
         //Given
-        World world = new World();
+        World world = new World(3);
         Cell cell1Alive = new Cell(0, 0);
         world.addCell(cell1Alive);
         Cell cell2Alive = new Cell(0, 2);
@@ -61,7 +61,7 @@ public class NeighboursTest {
     @Test
     public void the_cell_has_three_living_neighbors(){
         //Given
-        World world = new World();
+        World world = new World(3);
         Cell cell1Alive = new Cell(0, 0);
         world.addCell(cell1Alive);
         Cell cell2Alive = new Cell(0, 2);
@@ -81,7 +81,7 @@ public class NeighboursTest {
     @Test
     public void the_cell_has_four_living_neighbors(){
         //Given
-        World world = new World();
+        World world = new World(3);
         Cell cell1Alive = new Cell(0, 0);
         world.addCell(cell1Alive);
         Cell cell2Alive = new Cell(0, 2);
