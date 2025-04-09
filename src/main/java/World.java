@@ -26,8 +26,4 @@ public class World {
     public void addCell(Cell cell) {
         cellsAliveInTheWorld.add(cell);
     }
-
-    public Boolean isCellAlive(Cell cell) {
-        return cellsAliveInTheWorld.contains(cell);
-    }
 }
