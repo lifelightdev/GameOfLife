@@ -80,6 +80,42 @@ public class NextGenerationTest {
         Assertions.assertThat(cellsAliveInTheNextGeneration.getFirst().y()).isEqualTo(1);
     }
 
+    // O X O
+    // O X O
+    // O X 0
+
+    // O O O
+    // X X X
+    // O O O
+
+    @Test
+    public void cross_pattern() {
+
+        // Given
+        World world = new World();
+        Cell cell1Alive = new Cell(0, 1);
+        world.addCell(cell1Alive);
+        Cell cell2Alive = new Cell(1, 1);
+        world.addCell(cell2Alive);
+        Cell cell3Alive = new Cell(2, 1);
+        world.addCell(cell3Alive);
+
+
+        // When
+        List<Cell> cellsAliveInTheNextGeneration = world.nextGeneration();
+
+        // Then
+        Assertions.assertThat(cellsAliveInTheNextGeneration).isNotEmpty();
+        Assertions.assertThat(cellsAliveInTheNextGeneration.size()).isEqualTo(3);
+        Assertions.assertThat(cellsAliveInTheNextGeneration.getFirst().x()).isEqualTo(1);
+        Assertions.assertThat(cellsAliveInTheNextGeneration.getFirst().y()).isEqualTo(0);
+        Assertions.assertThat(cellsAliveInTheNextGeneration.get(1).x()).isEqualTo(1);
+        Assertions.assertThat(cellsAliveInTheNextGeneration.get(1).y()).isEqualTo(1);
+        Assertions.assertThat(cellsAliveInTheNextGeneration.getLast().x()).isEqualTo(1);
+        Assertions.assertThat(cellsAliveInTheNextGeneration.getLast().y()).isEqualTo(2);
+
+    }
+
     // Example of a world where 2,2 is the reference cell
     // Exemple de monde où 2,2 est la cellule de référence
     // 0,0 0,1 0,2 0,3 0,4
