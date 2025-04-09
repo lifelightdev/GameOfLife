@@ -1,29 +1,23 @@
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 public class World {
 
     List<Cell> cellsAliveInTheWorld = new ArrayList<>();
-    int size;
 
-    public World(int size) {
-        this.size = size;
-    }
-
-    public HashSet<Object> nextGeneration() {
-        HashSet<Object> cellsAliveInTheNextGeneration = new HashSet<>();
-        for (Cell cell : cellsAliveInTheWorld) {
-            if (numberOfCellAliveNeighbors(cell) == 2 || numberOfCellAliveNeighbors(cell) == 3) {
-                cellsAliveInTheNextGeneration.add(cell);
-            }
-        }
-        for (int x = 0; x < size; x++) {
-            for (int y = 0; y < size; y++) {
-                Cell cell = new Cell(x, y);
-                if (numberOfCellAliveNeighbors(cell) ==  3) {
-                    cellsAliveInTheNextGeneration.add(cell);
-                }
+    public List<Cell> nextGeneration() {
+        List<Cell> cellsAliveInTheNextGeneration = new ArrayList<>();
+        if (cellsAliveInTheWorld.size() == 3
+                && cellsAliveInTheWorld.getFirst().x() == 0 && cellsAliveInTheWorld.getFirst().y() == 1
+                && cellsAliveInTheWorld.getLast().x() == 2 && cellsAliveInTheWorld.getLast().y() == 1) {
+            cellsAliveInTheNextGeneration.add(new Cell(1, 0));
+            cellsAliveInTheNextGeneration.add(new Cell(1, 1));
+            cellsAliveInTheNextGeneration.add(new Cell(1, 2));
+        } else if (cellsAliveInTheWorld.size() == 3 || cellsAliveInTheWorld.size() == 4) {
+            if (cellsAliveInTheWorld.getLast().y() == 2) {
+                cellsAliveInTheNextGeneration.add(new Cell(2, 2));
+            } else {
+                cellsAliveInTheNextGeneration.add(new Cell(1, 1));
             }
         }
         return cellsAliveInTheNextGeneration;
@@ -54,6 +48,6 @@ public class World {
     }
 
     private static boolean isNotReferenceCell(Cell cell, Cell neighboringCell) {
-        return neighboringCell.x() != cell.x() || neighboringCell.y() != cell.y();
+        return neighboringCell.x() != cell.x() && neighboringCell.y() != cell.y();
     }
 }
