@@ -33,28 +33,26 @@ public class World {
 
     public int numberOfCellAliveNeighbors(Cell cell) {
         int numberOfNeighborsAlive = 0;
-        for (int x = -1; x < 2; x++) {
-            Cell neighboringCell = new Cell(cell.x() + x, cell.y() - 1);
-            if (neighboringCell.x() != cell.x() && neighboringCell.y() != cell.y()) {
-                if (cellsAliveInTheWorld.contains(neighboringCell)) {
-                    numberOfNeighborsAlive++;
-                }
-            }
-            neighboringCell = new Cell(cell.x() + x, cell.y());
-            if (neighboringCell.x() != cell.x() && neighboringCell.y() != cell.y()) {
-                if (cellsAliveInTheWorld.contains(neighboringCell)) {
-                    numberOfNeighborsAlive++;
-                }
-            }
-
-            neighboringCell = new Cell(cell.x() + x, cell.y() + 1);
-            if (neighboringCell.x() != cell.x() && neighboringCell.y() != cell.y()) {
-                if (cellsAliveInTheWorld.contains(neighboringCell)) {
-                    numberOfNeighborsAlive++;
-                }
-            }
+        Cell neighboringCell = new Cell(cell.x() - 1, cell.y() - 1);
+        if (cellsAliveInTheWorld.contains(neighboringCell)) {
+            numberOfNeighborsAlive++;
         }
-
+        neighboringCell = new Cell(cell.x() - 1, cell.y());
+        if (cellsAliveInTheWorld.contains(neighboringCell)) {
+            numberOfNeighborsAlive++;
+        }
+        neighboringCell = new Cell(cell.x() - 1, cell.y() + 1);
+        if (cellsAliveInTheWorld.contains(neighboringCell)) {
+            numberOfNeighborsAlive++;
+        }
+        neighboringCell = new Cell(cell.x() + 1, cell.y() - 1);
+        if (cellsAliveInTheWorld.contains(neighboringCell)) {
+            numberOfNeighborsAlive++;
+        }
+        neighboringCell = new Cell(cell.x() + 1, cell.y() + 1);
+        if (cellsAliveInTheWorld.contains(neighboringCell)) {
+            numberOfNeighborsAlive++;
+        }
         return numberOfNeighborsAlive;
     }
 }
