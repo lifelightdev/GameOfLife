@@ -7,10 +7,10 @@ public class NextGenerationTest {
     @Test
     public void empty_world() {
         // Given
-        World world = new World(3);
+        World world = new World(3, new HashSet<>());
 
         // When
-        HashSet<Object> cellsAliveInTheNextGeneration = world.nextGeneration();
+        HashSet<Cell> cellsAliveInTheNextGeneration = world.nextGeneration();
 
         // Then
         Assertions.assertThat(cellsAliveInTheNextGeneration).isEmpty();
@@ -19,12 +19,13 @@ public class NextGenerationTest {
     @Test
     public void a_cell_without_a_neighbor_dies_from_underpopulation() {
         // Given
-        World world = new World(3);
+        HashSet<Cell> listOfAliveCell = new HashSet<>();
         Cell cell = new Cell(1, 1);
-        world.addCell(cell);
+        listOfAliveCell.add(cell);
+        World world = new World(3, listOfAliveCell);
 
         // When
-        HashSet<Object> cellsAliveInTheNextGeneration = world.nextGeneration();
+        HashSet<Cell> cellsAliveInTheNextGeneration = world.nextGeneration();
 
         // Then
         Assertions.assertThat(cellsAliveInTheNextGeneration).isEmpty();
@@ -39,16 +40,17 @@ public class NextGenerationTest {
     @Test
     public void a_dead_cell_with_three_living_neighbors_born() {
         // Given
-        World world = new World(3);
+        HashSet<Cell> listOfAliveCell = new HashSet<>();
         Cell cell1Alive = new Cell(0, 0);
-        world.addCell(cell1Alive);
+        listOfAliveCell.add(cell1Alive);
         Cell cell2Alive = new Cell(0, 2);
-        world.addCell(cell2Alive);
+        listOfAliveCell.add(cell2Alive);
         Cell cell3Alive = new Cell(2, 0);
-        world.addCell(cell3Alive);
+        listOfAliveCell.add(cell3Alive);
+        World world = new World(3, listOfAliveCell);
 
         // When
-        HashSet<Object> cellsAliveInTheNextGeneration = world.nextGeneration();
+        HashSet<Cell> cellsAliveInTheNextGeneration = world.nextGeneration();
 
         // Then
         Assertions.assertThat(cellsAliveInTheNextGeneration).isNotEmpty();
@@ -68,17 +70,17 @@ public class NextGenerationTest {
     public void cross_pattern() {
 
         // Given
-        World world = new World(3);
+        HashSet<Cell> listOfAliveCell = new HashSet<>();
         Cell cell1Alive = new Cell(0, 1);
-        world.addCell(cell1Alive);
+        listOfAliveCell.add(cell1Alive);
         Cell cell2Alive = new Cell(1, 1);
-        world.addCell(cell2Alive);
+        listOfAliveCell.add(cell2Alive);
         Cell cell3Alive = new Cell(2, 1);
-        world.addCell(cell3Alive);
-
+        listOfAliveCell.add(cell3Alive);
+        World world = new World(3, listOfAliveCell);
 
         // When
-        HashSet<Object> cellsAliveInTheNextGeneration = world.nextGeneration();
+        HashSet<Cell> cellsAliveInTheNextGeneration = world.nextGeneration();
 
         // Then
         Assertions.assertThat(cellsAliveInTheNextGeneration).isNotEmpty();
@@ -99,16 +101,17 @@ public class NextGenerationTest {
     @Test
     public void a_living_cell_with_two_living_neighbors_survives() {
         // Given
-        World world = new World(5);
+        HashSet<Cell> listOfAliveCell = new HashSet<>();
         Cell cell1Alive = new Cell(1, 1);
-        world.addCell(cell1Alive);
+        listOfAliveCell.add(cell1Alive);
         Cell cell2Alive = new Cell(3, 3);
-        world.addCell(cell2Alive);
+        listOfAliveCell.add(cell2Alive);
         Cell cellAlive = new Cell(2, 2);
-        world.addCell(cellAlive);
+        listOfAliveCell.add(cellAlive);
+        World world = new World(5, listOfAliveCell);
 
         // When
-        HashSet<Object> cellsAliveInTheNextGeneration = world.nextGeneration();
+        HashSet<Cell> cellsAliveInTheNextGeneration = world.nextGeneration();
 
         // Then
         Assertions.assertThat(cellsAliveInTheNextGeneration).isNotEmpty();

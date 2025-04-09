@@ -1,18 +1,17 @@
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 
 public class World {
 
-    List<Cell> cellsAliveInTheWorld = new ArrayList<>();
-    int size;
+    private final HashSet<Cell> cellsAliveInTheWorld;
+    private final int size;
 
-    public World(int size) {
+    public World(int size, HashSet<Cell> cellsAliveInTheWorld) {
         this.size = size;
+        this.cellsAliveInTheWorld = cellsAliveInTheWorld;
     }
 
-    public HashSet<Object> nextGeneration() {
-        HashSet<Object> cellsAliveInTheNextGeneration = new HashSet<>();
+    public HashSet<Cell> nextGeneration() {
+        HashSet<Cell> cellsAliveInTheNextGeneration = new HashSet<>();
         for (Cell cell : cellsAliveInTheWorld) {
             if (numberOfCellAliveNeighbors(cell) == 2 || numberOfCellAliveNeighbors(cell) == 3) {
                 cellsAliveInTheNextGeneration.add(cell);
@@ -27,10 +26,6 @@ public class World {
             }
         }
         return cellsAliveInTheNextGeneration;
-    }
-
-    public void addCell(Cell cell) {
-        cellsAliveInTheWorld.add(cell);
     }
 
     public Boolean isCellAlive(Cell cell) {
@@ -49,7 +44,6 @@ public class World {
                 }
             }
         }
-
         return numberOfNeighborsAlive;
     }
 
