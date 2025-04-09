@@ -15,4 +15,16 @@ public class NeighboursTest {
         //Then
         Assertions.assertThat(isAlive).isTrue();
     }
+
+    @Test
+    public void a_cell_is_not_alive_in_the_world(){
+        //Given
+        World world = new World();
+
+        //When
+        Boolean isAlive = world.isCellAlive(new Cell(1, 1));
+
+        //Then
+        Assertions.assertThat(isAlive).isFalse();
+    }
 }
