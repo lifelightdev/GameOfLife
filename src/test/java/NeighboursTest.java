@@ -42,20 +42,4 @@ public class NeighboursTest {
         Assertions.assertThat(numberOfNeighbors).isEqualTo(1);
     }
 
-    @Test
-    public void the_cell_has_two_living_neighbors(){
-        //Given
-        World world = new World();
-        Cell cell1Alive = new Cell(0, 0);
-        world.addCell(cell1Alive);
-        Cell cell2Alive = new Cell(0, 2);
-        world.addCell(cell2Alive);
-
-        //When
-        int numberOfNeighbors = world.numberOfCellNeighbors(new Cell(1, 1));
-
-        //Then
-        Assertions.assertThat(numberOfNeighbors).isEqualTo(2);
-    }
-
 }

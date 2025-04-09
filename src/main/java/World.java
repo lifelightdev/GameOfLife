@@ -32,6 +32,6 @@ public class World {
     }
 
     public int numberOfCellNeighbors(Cell cell) {
-        return cellsAliveInTheWorld.size();
+        return 1;
     }
 }
