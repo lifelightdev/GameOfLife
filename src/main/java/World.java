@@ -36,7 +36,7 @@ public class World {
         for (int x = -1; x < 2; x++) {
             for (int y = -1; y < 2; y++) {
                 Cell neighboringCell = new Cell(cell.x() + x, cell.y() +y);
-                if (isNotReferenceCell(cell, neighboringCell)) {
+                if (neighboringCell.x() != cell.x() && neighboringCell.y() != cell.y()) {
                     if (isCellAlive(neighboringCell)) {
                         numberOfNeighborsAlive++;
                     }
@@ -45,9 +45,5 @@ public class World {
         }
 
         return numberOfNeighborsAlive;
-    }
-
-    private static boolean isNotReferenceCell(Cell cell, Cell neighboringCell) {
-        return neighboringCell.x() != cell.x() && neighboringCell.y() != cell.y();
     }
 }
