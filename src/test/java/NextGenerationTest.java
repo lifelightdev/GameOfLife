@@ -80,4 +80,33 @@ public class NextGenerationTest {
         Assertions.assertThat(cellsAliveInTheNextGeneration.getFirst().y()).isEqualTo(1);
     }
 
+    // Example of a world where 2,2 is the reference cell
+    // Exemple de monde où 2,2 est la cellule de référence
+    // 0,0 0,1 0,2 0,3 0,4
+    // 1,0 1,1 1,2 1,3 1,4
+    // 2,0 2,1 2,2 2,3 2,4
+    // 3,0 3,1 3,2 3,3 3,4
+    // 4,0 4,1 4,2 4,3 4,4
+
+    @Test
+    public void a_living_cell_with_two_living_neighbors_survives() {
+        // Given
+        World world = new World();
+        Cell cell1Alive = new Cell(1, 1);
+        world.addCell(cell1Alive);
+        Cell cell2Alive = new Cell(3, 3);
+        world.addCell(cell2Alive);
+        Cell cellAlive = new Cell(2, 2);
+        world.addCell(cellAlive);
+
+        // When
+        List<Cell> cellsAliveInTheNextGeneration = world.nextGeneration();
+
+        // Then
+        Assertions.assertThat(cellsAliveInTheNextGeneration).isNotEmpty();
+        Assertions.assertThat(cellsAliveInTheNextGeneration.size()).isEqualTo(1);
+        Assertions.assertThat(cellsAliveInTheNextGeneration.getFirst().x()).isEqualTo(2);
+        Assertions.assertThat(cellsAliveInTheNextGeneration.getFirst().y()).isEqualTo(2);
+    }
+
 }
