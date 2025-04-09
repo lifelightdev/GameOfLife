@@ -1,10 +1,8 @@
-package life.light;
-
 import java.util.HashSet;
 
 public class World {
 
-    HashSet<Cell> cellsAliveInTheWorld;
+    private final HashSet<Cell> cellsAliveInTheWorld;
     private final int size;
 
     public World(int size, HashSet<Cell> cellsAliveInTheWorld) {
