@@ -34,23 +34,12 @@ public class World {
     public int numberOfCellAliveNeighbors(Cell cell) {
         int numberOfNeighborsAlive = 0;
         for (int x = -1; x < 2; x++) {
-            Cell neighboringCell = new Cell(cell.x() + x, cell.y() - 1);
-            if (neighboringCell.x() != cell.x() && neighboringCell.y() != cell.y()) {
-                if (cellsAliveInTheWorld.contains(neighboringCell)) {
-                    numberOfNeighborsAlive++;
-                }
-            }
-            neighboringCell = new Cell(cell.x() + x, cell.y());
-            if (neighboringCell.x() != cell.x() && neighboringCell.y() != cell.y()) {
-                if (cellsAliveInTheWorld.contains(neighboringCell)) {
-                    numberOfNeighborsAlive++;
-                }
-            }
-
-            neighboringCell = new Cell(cell.x() + x, cell.y() + 1);
-            if (neighboringCell.x() != cell.x() && neighboringCell.y() != cell.y()) {
-                if (cellsAliveInTheWorld.contains(neighboringCell)) {
-                    numberOfNeighborsAlive++;
+            for (int y = -1; y < 2; y++) {
+                Cell neighboringCell = new Cell(cell.x() + x, cell.y() +y);
+                if (neighboringCell.x() != cell.x() && neighboringCell.y() != cell.y()) {
+                    if (isCellAlive(neighboringCell)) {
+                        numberOfNeighborsAlive++;
+                    }
                 }
             }
         }
